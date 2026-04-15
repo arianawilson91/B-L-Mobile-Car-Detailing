@@ -13,7 +13,8 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    const emailRegex = new RegExp("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
+    if (!email || !emailRegex.test(email)) {
       return NextResponse.json(
         { error: "Valid email is required" },
         { status: 400 }
